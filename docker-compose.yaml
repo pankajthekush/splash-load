@@ -20,7 +20,7 @@ services:
       - ./splash.conf:/etc/nginx/conf.d/default.conf
       - ./wait-for-it.sh:/wait-for-it.sh
     command: >
-            /bin/sh -c "/wait-for-it.sh -t 0 giggle.loc:5000 -- echo 'giggle local is up';
+            /bin/sh -c "/wait-for-it.sh -t 0 splash:8050 -- echo 'splash is up';
                         service nginx start; tail -f /dev/null"
     depends_on:
       - splash 
