@@ -1,7 +1,6 @@
 version: '2.4'
 services:
   splash:
-    container_name: splash
     logging:
       driver: json-file
       options:
