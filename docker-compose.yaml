@@ -9,9 +9,24 @@ services:
     image: scrapinghub/splash
     ports:
       - 8050   # HTTP API
-
     networks:
       - xtnet
+
+  splash.web:
+    image: nginx:1.22.0
+    ports:
+      - 80 
+    volumes:
+      - ./splash.conf:/etc/nginx/conf.d/default.conf
+      - ./wait-for-it.sh:/wait-for-it.sh
+    command: >
+            /bin/sh -c "/wait-for-it.sh -t 0 giggle.loc:5000 -- echo 'giggle local is up';
+                        service nginx start; tail -f /dev/null"
+    depends_on:
+      - splash 
+    networks:
+      - xtnet
+
 
 networks:
     xtnet:
