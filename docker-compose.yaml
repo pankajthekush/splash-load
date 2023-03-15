@@ -8,6 +8,8 @@ services:
     image: scrapinghub/splash
     ports:
       - 8050   # HTTP API
+    command: --maxrss 4000
+    mem_limit: 4.5G
     networks:
       - xtnet
 
